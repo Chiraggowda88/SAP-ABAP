@@ -1,0 +1,28 @@
+*&---------------------------------------------------------------------*
+*& Report ZUST_REPORT
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZUST_REPORT.
+
+TYPES : BEGIN OF ty_zust_table,
+  zempid TYPE zust_table-zempid,
+  zname TYPE zust_table-zname,
+  zsalary TYPE zust_table-zsalary,
+  zckey  TYPE zust_table-zckey,
+  department TYPE zust_table-department,
+END OF ty_zust_table.
+
+DATA : st_zust_table TYPE ty_zust_table.
+
+PARAMETERS p_zempid TYPE zust_table-zempid.
+
+SELECT zempid zname zsalary zckey department from zust_table INTO st_zust_table where zempid EQ p_zempid.
+
+  write : / st_zust_table-zempid,
+  st_zust_table-zname,
+  st_zust_table-zsalary,
+  st_zust_table-zckey,
+  st_zust_table-department.
+
+  ENDSELECT.
