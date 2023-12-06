@@ -1,0 +1,13 @@
+*&---------------------------------------------------------------------*
+*& Report ZUST_PROCEDURE_CALL
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZUST_PROCEDURE_CALL.
+DATA v_date TYPE sy-datum.
+v_date = sy-datum.
+write v_date.
+AT LINE-SELECTION.
+  EXPORT v_date TO MEMORY ID 'UST'.
+  SUBMIT ZUST_PROCEDURE_MEMORY AND RETURN.
+  WRITE 'end'.

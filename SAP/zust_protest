@@ -1,0 +1,20 @@
+*&---------------------------------------------------------------------*
+*& Report ZUST_PROGTEST
+*&---------------------------------------------------------------------*
+*&
+*&----------------------------------------------------------------------*
+REPORT ZUST_PROGTEST.
+
+DATA : BEGIN OF st_marc,
+  matnr TYPE marc-matnr,
+  werks TYPE marc-werks,
+  END OF st_marc.
+
+  PARAMETERS p_matnr TYPE marc-matnr.
+  DATA v_name TYPE t001w-name1.
+
+ SELECT matnr werks FROM marc INTO st_marc WHERE matnr EQ p_matnr.
+  SELECT SINGLE matnr werks FROM marc INTO st_marc WHERE matnr EQ p_matnr.
+
+    write: st_marc-matnr,
+           st_marc-werks.

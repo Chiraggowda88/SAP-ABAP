@@ -1,0 +1,42 @@
+*&---------------------------------------------------------------------*
+*& Report Z_TEST
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT Z_TEST.
+
+DATA date type d.
+date = '20000912'.
+WRITE date.
+
+DATA time type t.
+time =' 111505'.
+WRITE time.
+
+DATA decimal type p.
+decimal ='28.23'.
+WRITE decimal.
+
+DATA point type F.
+point ='-32.1421552'.
+WRITE point.
+
+DATA int type I.
+int = '25356632'.
+WRITE int.
+
+DATA df type decfloat16.
+df = '2838284.324'.
+WRITE df.
+
+DATA hexa type x.
+hexa = '45567443337'.
+WRITE hexa.
+
+DATA str type string.
+str = 'ASFGHJ'.
+WRITE str.
+
+DATA hexas type xstring.
+hexas = '3364567'.
+WRITE hexas.

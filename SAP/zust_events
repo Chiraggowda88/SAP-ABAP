@@ -1,0 +1,37 @@
+*&---------------------------------------------------------------------*
+*& Report ZUST_EVENTS
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZUST_EVENTS.
+DATA v_maktx TYPE maktx.
+PARAMETERS p_matnr TYPE matnr DEFAULT 'MN100'.
+PARAMETERS p_date TYPE sy-datum.
+PARAMETERS p_set1 AS CHECKBOX.
+
+lOAD-OF-PROGRAM.
+write:/ 'load-of-program'.
+
+INITIALIZATION.
+write:/ 'Initialization'.
+
+START-OF-SELECTION.
+write:/ 'start of selection'.
+
+END-OF-SELECTION.
+write:/ 'End of selection'.
+
+AT SELECTION-SCREEN OUTPUT.
+write:/ 'selection screen output'.
+
+AT SELECTION-SCREEN.
+write:/ 'selection screen'.
+
+TOP-OF-PAGE.
+write:/ 'top of the page'.
+
+END-OF-PAGE.
+write:/ 'end of page'.
+
+AT LINE-SELECTION.
+write:/ 'line selection'.

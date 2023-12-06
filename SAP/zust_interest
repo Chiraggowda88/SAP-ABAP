@@ -1,0 +1,31 @@
+*&---------------------------------------------------------------------*
+*& Report ZUST_INTEREST
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZUST_INTEREST.
+
+PARAMETERS : p_amount TYPE p DECIMALS 2,
+             p_perc TYPE p DECIMALS 2,
+             p_days TYPE i,
+             p_chk AS CHECKBOX.
+DATA :       total_amt TYPE p DECIMALS 2,
+             int_amt TYPE p DECIMALS 2.
+
+ IF p_chk EQ 'X'.
+ int_amt = p_amount * ( p_perc / 100 ) * ( p_days ) .
+ total_amt = p_amount + int_amt.
+
+
+    ELSE.
+    total_amt = p_amount.
+    DO p_days TIMES.
+    int_amt = total_amt * p_perc / 100.
+    total_amt = total_amt + int_amt.
+    ENDDO.
+
+    ENDIF.
+
+    WRITE :   'Initial Amount:',p_amount,/
+              'Total Days:',p_days,/
+              'Total Amount:',total_amt.

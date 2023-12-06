@@ -1,0 +1,18 @@
+*&---------------------------------------------------------------------*
+*& Report ZUST_BADI
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZUST_BADI.
+
+
+DATA o_obj TYPE REF TO zchi_badi.
+
+PARAMETERS p_value TYPE i.
+
+GET BADI o_obj.
+
+CALL BADI o_obj->calculate_gst
+  EXPORTING
+    p_value = p_value
+  .

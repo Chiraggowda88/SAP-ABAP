@@ -1,0 +1,41 @@
+*&---------------------------------------------------------------------*
+*& Report ZUST_FG
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZUST_FG.
+DATA : it_vbak TYPE z_header,
+      wa_vbak LIKE LINE OF it_vbak,
+      it_item TYPE z_item,
+      it_header TYPE z_header.
+
+
+      SELECT-OPTIONS s_num FOR wa_vbak-vbeln.
+ START-OF-SELECTION.
+ CALL FUNCTION 'ZUST_HEADER'
+                     EXPORTING
+                          i_vbeln          = s_num[]
+                     IMPORTING
+                         P_IT_HEADER       = it_header.
+
+      END-OF-SELECTION.
+                     CALL FUNCTION 'ZUST_HEADERWRITE'
+                     EXPORTING
+                        it_header       = it_header
+                                          .
+
+  DATA : fnam(20),fval(50).
+  DATA v_vbeln TYPE vbap-vbeln.
+  GET CURSOR FIELD fnam VALUE fval.
+
+AT LINE-SELECTION.
+  CALL FUNCTION 'ZUST_ITEM'
+    EXPORTING
+      im_v_vbeln       = v_vbeln
+   IMPORTING
+     P_IT_ITEM        = it_item.
+
+
+  CALL FUNCTION 'ZUST_ITEMWRITE'
+    EXPORTING
+      it_item       = it_item.

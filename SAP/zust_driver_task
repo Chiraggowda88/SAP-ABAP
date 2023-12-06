@@ -1,0 +1,43 @@
+*&---------------------------------------------------------------------*
+*& Report ZUST_DRIVER_TASK
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZUST_DRIVER_TASK.
+
+DATA it_vbak TYPE z1_vbak.
+DATA it_vbap TYPE z1_vbap.
+
+PARAMETERS v_vbeln TYPE vbeln.
+
+START-OF-SELECTION.
+SELECT vbeln audat netwr kunnr FROM vbak INTO TABLE it_vbak WHERE vbeln EQ v_vbeln.
+SELECT vbeln posnr pstyv arktx kwmeng zieme netwr FROM vbap INTO TABLE it_vbap WHERE vbeln EQ v_vbeln.
+
+CALL FUNCTION '/1BCDWB/SF00000132'
+  EXPORTING
+*   ARCHIVE_INDEX              =
+*   ARCHIVE_INDEX_TAB          =
+*   ARCHIVE_PARAMETERS         =
+*   CONTROL_PARAMETERS         =
+*   MAIL_APPL_OBJ              =
+*   MAIL_RECIPIENT             =
+*   MAIL_SENDER                =
+*   OUTPUT_OPTIONS             =
+*   USER_SETTINGS              = 'X'
+    it_vbak                    = it_vbak
+    it_vbap                    = it_vbap
+* IMPORTING
+*   DOCUMENT_OUTPUT_INFO       =
+*   JOB_OUTPUT_INFO            =
+*   JOB_OUTPUT_OPTIONS         =
+ EXCEPTIONS
+   FORMATTING_ERROR           = 1
+   INTERNAL_ERROR             = 2
+   SEND_ERROR                 = 3
+   USER_CANCELED              = 4
+   OTHERS                     = 5
+          .
+IF sy-subrc <> 0.
+* Implement suitable error handling here
+ENDIF.

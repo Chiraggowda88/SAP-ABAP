@@ -1,0 +1,11 @@
+*&---------------------------------------------------------------------*
+*& Report ZUST_PROCEDURE_MEMORY
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZUST_PROCEDURE_MEMORY.
+
+DATA v_date TYPE sy-datum.
+IMPORT v_date FROM MEMORY ID 'UST'.
+GET PARAMETER ID 'UST' FIELD v_date.
+WRITE v_date.

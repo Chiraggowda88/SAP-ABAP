@@ -1,0 +1,10 @@
+*&---------------------------------------------------------------------*
+*& Report ZUST_OOPS_EVENTS
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZUST_OOPS_EVENTS.
+CLASS lcl_event_handler DEFINITION.
+  PUBLIC SECTION.
+ METHODS catch_double_click FOR EVENT RAISE_DOUBLE_CLICK OF ZUST_OOPS_EVENTS.
+ ENDCLASS

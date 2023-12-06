@@ -1,0 +1,28 @@
+*&---------------------------------------------------------------------*
+*& Report ZPROGRAM_TASK3
+*&---------------------------------------------------------------------*
+*&
+*&---------------------------------------------------------------------*
+REPORT ZPROGRAM_TASK3.
+TYPES: BEGIN OF ty_makt,
+         matnr TYPE makt-matnr,
+         spras TYPE makt-spras,
+         maktx TYPE makt-maktx,
+       END OF ty_makt.
+
+DATA : IT_MAKT TYPE TABLE OF TY_MAKT,
+       WA_MAKT LIKE LINE OF IT_MAKT.
+
+SELECT-OPTIONS p_matnr FOR wa_makt-matnr.
+
+SELECT matnr spras maktx FROM makt INTO TABLE it_makt WHERE matnr in p_matnr .
+
+WRITE : /'Material No.',
+    20 'Language',
+    40 'Description'.
+
+LOOP AT it_makt into wa_makt.
+    WRITE :/ wa_makt-matnr,
+            20 wa_makt-spras,
+            40 wa_makt-maktx.
+  ENDLOOP.
